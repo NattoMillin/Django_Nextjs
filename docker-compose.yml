@@ -1,0 +1,17 @@
+version: "3"
+services:
+  django:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        UID: ${UID:-20000}
+        GID: ${GID:-20000}
+    volumes:
+      - "./djangoNext:/app/"
+      - "./req.txt:/app/req.txt"
+      - ".unibeautifyrc.json:/app/.unibeautifyrc.json"
+    ports:
+      - "8000:80"
+    tty: true
+    working_dir: /app
